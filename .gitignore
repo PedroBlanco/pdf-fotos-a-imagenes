@@ -1,0 +1,36 @@
+# Secretos y configuración local
+.env
+.env.local
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+service-account.json
+secrets/*.env
+secrets/*.json
+secrets/*.pem
+secrets/*.key
+
+# Entornos y dependencias
+.venv/
+venv/
+node_modules/
+vendor/
+
+# Resultados y caches
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+htmlcov/
+dist/
+build/
+.quarto/
+_book/
+.DS_Store
+Thumbs.db
+
+# Worktrees gestionados fuera o dentro del repo
+.worktrees/

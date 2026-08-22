@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/pdf_fotos_a_imagenes/__init__.py
+src/pdf_fotos_a_imagenes/main.py
+src/pdf_fotos_a_imagenes.egg-info/PKG-INFO
+src/pdf_fotos_a_imagenes.egg-info/SOURCES.txt
+src/pdf_fotos_a_imagenes.egg-info/dependency_links.txt
+src/pdf_fotos_a_imagenes.egg-info/requires.txt
+src/pdf_fotos_a_imagenes.egg-info/top_level.txt
+tests/test_main.py
