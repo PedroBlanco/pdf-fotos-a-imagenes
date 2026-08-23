@@ -30,6 +30,7 @@ dev = [
   "mypy>=1.16",
   "pytest>=8.4",
   "ruff>=0.12",
+  "types-Pillow>=10.0",
 ]
 
 [tool.setuptools.packages.find]
@@ -48,3 +49,8 @@ python_version = "3.11"
 strict = true
 packages = ["pdf_fotos_a_imagenes"]
 mypy_path = "src"
+
+[[tool.mypy.overrides]]
+module = ["autocrop", "autocrop.*", "pypdfium2", "pypdfium2.*"]
+follow_imports = "skip"
+ignore_missing_imports = true
