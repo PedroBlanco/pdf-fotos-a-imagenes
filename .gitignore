@@ -2,7 +2,6 @@
 .env
 .env.local
 .env.*
-!.env.example
 *.pem
 *.key
 credentials.json
@@ -12,13 +11,12 @@ secrets/*.json
 secrets/*.pem
 secrets/*.key
 
-# Entornos y dependencias
+# Entornos y metadata de paquetes Python
 .venv/
 venv/
-node_modules/
-vendor/
+*.egg-info/
 
-# Resultados y caches
+# Resultados y caches Python
 __pycache__/
 .pytest_cache/
 .mypy_cache/
@@ -27,8 +25,8 @@ coverage/
 htmlcov/
 dist/
 build/
-.quarto/
-_book/
+
+# Archivos del sistema
 .DS_Store
 Thumbs.db
 

@@ -5,17 +5,31 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pdf-fotos-a-imagenes"
 version = "0.1.0"
-description = "Proyecto pdf-fotos-a-imagenes"
+description = "Extrae y endereza fotografías de documentos PDF escaneados"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "mit" }
-dependencies = []
+license = "GPL-3.0-only"
+dependencies = [
+  "numpy>=1.26",
+  "pillow>=10.0",
+  "pypdfium2>=5.12.1,<6",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+
+[project.scripts]
+pdf-fotos-a-imagenes = "pdf_fotos_a_imagenes.main:cli"
 
 [project.optional-dependencies]
 dev = [
   "mypy>=1.16",
   "pytest>=8.4",
   "ruff>=0.12",
+  "types-Pillow>=10.0",
 ]
 
 [tool.setuptools.packages.find]
@@ -27,9 +41,16 @@ testpaths = ["tests"]
 [tool.ruff]
 target-version = "py311"
 line-length = 100
+exclude = ["src/autocrop"]
 
 [tool.mypy]
 python_version = "3.11"
 strict = true
 packages = ["pdf_fotos_a_imagenes"]
 mypy_path = "src"
+exclude = "^src/autocrop/"
+
+[[tool.mypy.overrides]]
+module = ["autocrop", "autocrop.*", "pypdfium2", "pypdfium2.*"]
+follow_imports = "skip"
+ignore_missing_imports = true

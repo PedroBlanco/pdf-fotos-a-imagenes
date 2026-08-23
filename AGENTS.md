@@ -1,51 +1,70 @@
 # Instrucciones para agentes — pdf-fotos-a-imagenes
 
 ## Propósito
-Trabajar sobre un proyecto de tipo **software**, lenguaje **python**, manteniendo cambios pequeños, revisables, reproducibles y seguros.
 
-## Contexto generado
-Consulte `.github/codex/project-context.md`. Sus valores reflejan decisiones reales de generación; `No aplica` significa que esa opción no corresponde a este tipo de proyecto.
+Mantener una aplicación Python multiplataforma que extrae fotografías individuales de PDF
+escaneados, con renderizado mediante `pypdfium2`/PDFium y detección/deskew mediante código derivado
+de `msaavedra/autocrop` integrado en `src/autocrop`.
 
-## Estructura
-- `.github/`: CI, plantillas de colaboración y contexto/prompts de Codex.
-- `docs/`: documentación mantenida junto al código o proyecto.
-- `scripts/`: comandos repetibles de comprobación, seguridad y mantenimiento.
-- `src/` y `tests/`: implementación y pruebas cuando correspondan.
+## Arquitectura obligatoria
 
-## Comandos de trabajo
-- Bash: `./scripts/check.sh` y `./scripts/security.sh`
-- PowerShell: `./scripts/check.ps1` y `./scripts/security.ps1`
+- El PDF multipágina se abre y renderiza directamente desde Python.
+- No se requieren ni deben introducirse ejecutables PDF externos salvo una decisión explícita y
+  justificada del proyecto.
+- No se crean PDF de una sola página como etapa intermedia.
+- Las páginas renderizadas se mantienen en memoria; `--keep-pages` permite conservar PNG solo para
+  revisión.
+- La salida son fotografías JPEG o PNG independientes.
+- Plataformas objetivo: Windows, Linux y macOS.
+
+Consulte `docs/architecture.md`, `.github/codex/project-context.md` y `THIRD_PARTY_NOTICES.md` antes
+de modificar dependencias o el motor de imagen.
+
+## Licencia y terceros
+
+El proyecto es `GPL-3.0-only`. `src/autocrop` deriva de `msaavedra/autocrop` GPLv3. Al modificar ese
+código deben conservarse los avisos de copyright, licencia, procedencia y modificaciones locales.
+
+## Comprobaciones
+
+Linux/macOS:
+
+```bash
+bash scripts/check.sh
+bash scripts/security.sh
+```
+
+PowerShell 7+:
+
+```powershell
+./scripts/check.ps1
+./scripts/security.ps1
+```
+
+CI debe validar el código en Windows, Linux y macOS.
 
 ## Reglas de trabajo
-1. Lea primero este archivo y cualquier `AGENTS.md` más cercano al archivo modificado.
-2. Limite el cambio al objetivo de la tarea y evite refactorizaciones laterales no solicitadas.
-3. Añada o actualice pruebas y documentación cuando cambie comportamiento.
-4. Mantenga los comandos automatizables y no interactivos siempre que sea posible.
-5. No desactive controles para lograr que una comprobación pase.
 
-## Criterios de finalización
-- Criterios de aceptación satisfechos.
-- Comprobaciones relevantes ejecutadas y resultados comunicados.
-- Riesgos, supuestos y límites documentados.
-- Sin secretos, credenciales ni datos sensibles introducidos por el cambio.
-- Documentación y changelog actualizados cuando corresponda.
+1. Mantenga cambios pequeños, revisables y reproducibles.
+2. Añada o actualice pruebas cuando cambie comportamiento.
+3. No desactive controles para conseguir que una comprobación pase.
+4. Cierre recursos PDF e imágenes explícitamente para evitar fugas en lotes grandes.
+5. Evite pérdida de calidad y conversiones intermedias innecesarias.
+6. No introduzca secretos, credenciales ni fotografías reales en pruebas.
+7. Use imágenes/PDF sintéticos en el repositorio y en CI.
 
 ## Requieren aprobación humana explícita
+
+- Fusionar en una rama protegida si la política del repositorio lo exige.
 - Publicar una release o crear etiquetas.
-- Hacer `push` a ramas protegidas.
-- Cambiar secretos, permisos, reglas de protección o configuración de producción.
-- Ejecutar migraciones destructivas o cambios irreversibles.
-- Instalar software globalmente o modificar sistemas fuera del repositorio.
+- Cambiar secretos, permisos o reglas de protección.
+- Alterar historial compartido fuera del alcance solicitado.
 
-## Operaciones prohibidas
-- Incluir claves, tokens, contraseñas, certificados privados o credenciales.
-- Saltarse pruebas, análisis o revisiones ocultando errores.
-- Borrar datos o archivos ajenos a la tarea.
-- Ejecutar despliegues reales desde una tarea de análisis o revisión.
-- Alterar historial compartido sin autorización.
+## Criterios de finalización
 
-## Code review
-Revise corrección, alcance, pruebas, seguridad, compatibilidad, documentación, dependencias y posibilidad de rollback. Señale explícitamente lo no verificado.
-
-## Secretos y datos
-Use `.env.example` solo con nombres y valores ficticios. Los ficheros `.env`, claves privadas y credenciales están ignorados por Git. No copie secretos a worktrees.
+- Criterios de aceptación satisfechos.
+- Ruff, mypy y pytest correctos.
+- CI multiplataforma correcto.
+- Controles de seguridad correctos.
+- Documentación y changelog coherentes.
+- Sin código, dependencias ni instrucciones obsoletas relacionadas con arquitecturas descartadas.
