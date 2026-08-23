@@ -1,19 +1,14 @@
 # Analizar una issue
 
-## Contexto fijo del proyecto
-- Tipo: `software`
-- Lenguaje: `python`
-- Licencia: `mit`
-- Git inicializado: `true`
-- GitHub solicitado: `true`
-- Visibilidad GitHub: `public`
-- Publisher: `No aplica`
-- Investigación: `No aplica`
-- Política de datos: `No aplica`
-- Salida: `No aplica`
-- Plataforma: `No aplica`
-- Automatización: `No aplica`
-- Topología: `No aplica`
-- Entorno: `No aplica`
+Proyecto `pdf-fotos-a-imagenes`: software Python, licencia `GPL-3.0-only`.
 
-Lee `AGENTS.md` y `.github/codex/project-context.md`. Analiza la issue sin modificar archivos. Identifica objetivo, alcance, archivos probables, dependencias, riesgos, datos/secretos implicados, pruebas y criterios de aceptación. Marca como **no verificado** cualquier supuesto que no puedas comprobar.
+Arquitectura actual:
+- `pypdfium2`/PDFium abre y renderiza directamente PDF multipágina.
+- `src/autocrop` contiene código derivado de `msaavedra/autocrop` GPLv3.
+- No hay ejecutables PDF externos ni etapas con PDF intermedios.
+- Plataformas objetivo: Windows, Linux y macOS.
+
+Lee `AGENTS.md`, `.github/codex/project-context.md` y `THIRD_PARTY_NOTICES.md`. Analiza la issue
+sin modificar archivos. Identifica objetivo, alcance, archivos probables, compatibilidad
+multiplataforma, impacto en licencias, riesgos de pérdida/calidad de imagen, pruebas y criterios de
+aceptación. Marca como **no verificado** cualquier supuesto que no puedas comprobar.
