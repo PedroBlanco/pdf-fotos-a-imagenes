@@ -48,6 +48,7 @@ python_version = "3.11"
 strict = true
 packages = ["pdf_fotos_a_imagenes"]
 mypy_path = "src"
+exclude = "^src/autocrop/"
 
 [[tool.mypy.overrides]]
 module = ["autocrop", "autocrop.*", "pypdfium2", "pypdfium2.*"]
