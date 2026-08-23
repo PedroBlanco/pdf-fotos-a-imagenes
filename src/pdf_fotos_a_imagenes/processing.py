@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import shutil
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Sequence
 
 import pypdfium2 as pdfium
-from autocrop import Background, MultiPartImage
 from PIL import Image
+
+from autocrop import Background, MultiPartImage
 
 
 class ProcessingError(RuntimeError):
