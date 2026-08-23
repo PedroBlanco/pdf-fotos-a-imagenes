@@ -6,6 +6,7 @@ import shutil
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from typing import cast
 
 import pypdfium2 as pdfium
 from PIL import Image
@@ -117,7 +118,8 @@ def render_page(document: pdfium.PdfDocument, page_index: int, dpi: int) -> Imag
     bitmap = None
     try:
         bitmap = page.render(scale=dpi / 72.0)
-        return bitmap.to_pil().convert("RGB")
+        pil_image = cast(Image.Image, bitmap.to_pil())
+        return pil_image.convert("RGB")
     except Exception as exc:
         raise ProcessingError(f"No se pudo rasterizar la página {page_index + 1}: {exc}") from exc
     finally:
