@@ -26,6 +26,9 @@ No se necesita PDFtk, Poppler, ImageMagick, Ghostscript ni ningún otro ejecutab
 `pypdfium2` publica wheels para las plataformas habituales, por lo que el mismo código está pensado
 para Windows, Linux y macOS.
 
+`pyproject.toml` es la fuente de verdad de las dependencias. `requirements.txt` contiene `.` para
+permitir también la instalación convencional con `pip -r` sin duplicar versiones.
+
 ## Instalación
 
 Desde una copia del repositorio:
@@ -46,10 +49,16 @@ Activación en PowerShell:
 .\.venv\Scripts\Activate.ps1
 ```
 
-Instalación:
+Instalación recomendada:
 
 ```bash
-python -m pip install -e .
+python -m pip install .
+```
+
+Instalación equivalente mediante `requirements.txt`:
+
+```bash
+python -m pip install -r requirements.txt
 ```
 
 Para desarrollo:
