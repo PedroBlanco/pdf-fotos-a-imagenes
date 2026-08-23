@@ -1,0 +1,4 @@
+# Las dependencias de ejecución se declaran en pyproject.toml.
+# Instalar este fichero delega en esos metadatos para evitar mantener
+# dos listas de versiones que puedan quedar desincronizadas.
+.
