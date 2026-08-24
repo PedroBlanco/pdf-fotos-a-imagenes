@@ -26,6 +26,9 @@ htmlcov/
 dist/
 build/
 
+# Salida generada por la aplicación
+fotos_extraidas/
+
 # Archivos del sistema
 .DS_Store
 Thumbs.db
