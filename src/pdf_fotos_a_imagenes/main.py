@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from .processing import (
+from processing import (
     ProcessingError,
     ProcessingOptions,
     build_background,
