@@ -69,11 +69,22 @@ python -m pip install -e ".[dev]"
 
 ## Uso básico
 
-Un PDF:
+Tras instalar el proyecto, la forma principal de ejecución es el comando definido por el paquete:
 
 ```bash
 pdf-fotos-a-imagenes album.pdf
 ```
+
+También puede ejecutarse explícitamente como módulo Python:
+
+```bash
+python -m pdf_fotos_a_imagenes album.pdf
+```
+
+Ambas formas usan el mismo punto de entrada. No se admite ejecutar directamente
+`src/pdf_fotos_a_imagenes/main.py` con `python`, porque ese fichero forma parte del paquete y usa
+importaciones relativas internas. Para trabajar desde una copia del repositorio, instálela primero,
+preferiblemente en modo editable durante el desarrollo.
 
 Varios PDF:
 
@@ -130,6 +141,7 @@ Ayuda completa:
 
 ```bash
 pdf-fotos-a-imagenes --help
+python -m pdf_fotos_a_imagenes --help
 ```
 
 ## Calidad de imagen
@@ -157,8 +169,8 @@ archivos afectados y en `THIRD_PARTY_NOTICES.md`.
 Linux/macOS:
 
 ```bash
-./scripts/check.sh
-./scripts/security.sh
+bash scripts/check.sh
+bash scripts/security.sh
 ```
 
 PowerShell:
@@ -169,7 +181,8 @@ PowerShell:
 ```
 
 Las pruebas incluyen un PDF multipágina sintético que recorre el flujo completo de renderizado y
-extracción, además de una prueba específica de corrección de giro.
+extracción, una prueba específica de corrección de giro y una comprobación del punto de entrada
+`python -m pdf_fotos_a_imagenes`.
 
 ## Licencia
 
