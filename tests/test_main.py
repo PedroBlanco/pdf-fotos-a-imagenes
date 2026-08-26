@@ -1,3 +1,5 @@
+import subprocess
+import sys
 from pathlib import Path
 
 from pdf_fotos_a_imagenes.main import build_parser
@@ -11,3 +13,15 @@ def test_parser_uses_python_only_defaults() -> None:
     assert args.format == "jpeg"
     assert args.max_photos == 4
     assert args.no_deskew is False
+
+
+def test_package_can_run_as_module() -> None:
+    result = subprocess.run(
+        [sys.executable, "-m", "pdf_fotos_a_imagenes", "--help"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0
+    assert "Extrae fotografías de PDF escaneados" in result.stdout
